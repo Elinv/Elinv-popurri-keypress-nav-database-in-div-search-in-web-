@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda HTML Elinv</title>
+
+    <link rel="icon" sizes="96x96" href="./favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./jquery-latest.min.js"></script>
+    <script src="./run_prettify.js?autoload=true&skin=sons-of-obsidian" defer="defer"></script>
+</head>
+
+<body>
+    <h1>HTML soporte rápido.</h1>
+    <h3 class="text-primary">Buscador de Texto en HTML</h3>
+    <hr style="border-top:1px dotted #ccc;" />
+    <div>
+        Buscar » <input name="buscador" id="buscador" type="text" />
+    </div>
+
+    <ul id="lista">
+
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>Simple HTML document</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;title&gt;Title of the document&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+        &lt;h1&gt;This is a heading&lt;/h1&gt;
+        &lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+    &lt;/body&gt;
+    &lt;/html&gt;
+            </pre>
+            </p>
+        </li>
+
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>details tag</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+    &lt;details&gt;
+        &lt;summary&gt;Ayuda en detalle&lt;/summary&gt;
+        &lt;p&gt;Especifique los detalles 
+            que el usuario puede abrir 
+            y cerrar a petición.
+
+            La etiqueta se utiliza a menudo 
+            para crear un widget interactivo 
+            que el usuario puede abrir y cerrar. 
+            
+            De forma predeterminada, 
+            el widget está cerrado. 
+            
+            Cuando se abre, 
+            se expande y muestra 
+            el contenido que contiene.
+
+            Cualquier tipo de contenido 
+            se puede poner dentro de la etiqueta.
+         &lt;/p&gt;
+    &lt;/details&gt;
+            </pre>
+            </p>
+        </li>
+
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>Form fieldset</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+    &lt;form action="/action_page.php"&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;Personal:&lt;/legend&gt;
+            &lt;label for="fname"&gt;First name:&lt;/label&gt;
+            &lt;input type="text" id="fname" name="fname"&gt;&lt;br&gt;&lt;br&gt;
+            &lt;label for="lname"&gt;Last name:&lt;/label&gt;
+            &lt;input type="text" id="lname" name="lname"&gt;&lt;br&gt;&lt;br&gt;
+            &lt;label for="email"&gt;Email:&lt;/label&gt;
+            &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;&lt;br&gt;
+            &lt;label for="birthday"&gt;Birthday:&lt;/label&gt;
+            &lt;input type="date" id="birthday" name="birthday"&gt;&lt;br&gt;&lt;br&gt;
+            &lt;input type="submit" value="Submit"&gt;
+        &lt;/fieldset&gt;
+    &lt;/form&gt;
+            </pre>
+            </p>
+        </li>
+
+    </ul>
+
+    <script type='text/javascript'>
+
+        $.expr[':'].icontains = function (obj, index, meta, stack) {
+            return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
+        };
+
+        $(document).ready(function () {
+
+            $('#buscador').keyup(function () {
+                // ocultamos todos los elementos li
+                var listItems = $("#lista li");
+                listItems.each(function(idx, li) {
+                    $('#lista li').addClass('dNone'); 
+                });
+
+                // mostramos solo donde haya resultado
+                buscar = $(this).val();
+                $('#lista li').removeClass('resaltar');
+                if (jQuery.trim(buscar) != '') {
+                    $("#lista li:icontains('" + buscar + "')").addClass('resaltar').removeClass('dNone');
+                }
+                // si al retroceder se borro todo, se muestra todo.
+                if (buscar === ''){
+                    var listItems = $("#lista li");
+                    listItems.each(function(idx, li) {
+                    $('#lista li').removeClass('dNone'); 
+                });
+                }
+            });
+
+                            // ocultamos todos los elementos li
+                            var listItems = $("#lista li");
+                listItems.each(function(idx, li) {
+                    $('#lista li').addClass('dNone'); 
+                });
+
+        });  
+    </script
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda Javascript Elinv</title>
+    <link rel="icon" sizes="96x96" href="./favicon.ico">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./jquery-latest.min.js"></script>
+    <script src="./run_prettify.js?autoload=true&skin=sons-of-obsidian" defer="defer"></script>
+</head>
+
+<body>
+    <h1>Javascript soporte rápido.</h1>
+    <h3 class="text-primary">Buscador de Texto en JavaScript</h3>
+    <hr style="border-top:1px dotted #ccc;" />
+    <div>
+        Buscar » <input name="buscador" id="buscador" type="text" />
+    </div>
+    <hr>
+
+    <ul id="lista">
+
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>"class": sintaxis básica</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+
+    class User {                 
+        constructor(name) {
+            this.name = name; 
+        }                 
+        
+        sayHi() { 
+            alert(this.name); 
+        }                 
+    }       
+                
+    // Uso: 
+    let user = new User("Juan"); 
+    user.sayHi(); 
+
+            </pre>
+            </p>
+        </li>
+
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>cargar e inserntar html async</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+                
+    // forma de utilización
+    // ?v=6 permite actualizar y evitar 
+    // el cache del navegador
+    // el número final debe cambiar cada vez.
+
+    getText("deDios.html?v=6", "Mistica");
+    getText("visitas.html?v=6", "visitasSection");
+    
+    // Función para leer un archivo externo
+    async function getText(file, id) {
+        let myObject = await fetch(file);
+        let myText = await myObject.text();
+        document.getElementById(id).innerHTML = myText;
+    }
+
+            </pre>
+            </p>
+        </li>
+
+    </ul>
+
+    <script type='text/javascript'>
+
+        $.expr[':'].icontains = function (obj, index, meta, stack) {
+            return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
+        };
+
+        $(document).ready(function () {
+
+            $('#buscador').keyup(function () {
+                // ocultamos todos los elementos li
+                var listItems = $("#lista li");
+                listItems.each(function (idx, li) {
+                    $('#lista li').addClass('dNone');
+                });
+
+                // mostramos solo donde haya resultado
+                buscar = $(this).val();
+                $('#lista li').removeClass('resaltar');
+                if (jQuery.trim(buscar) != '') {
+                    $("#lista li:icontains('" + buscar + "')").addClass('resaltar').removeClass('dNone');
+                }
+                // si al retroceder se borro todo, se muestra todo.
+                if (buscar === '') {
+                    var listItems = $("#lista li");
+                    listItems.each(function (idx, li) {
+                        $('#lista li').removeClass('dNone');
+                    });
+                }
+            });
+
+        });  
+    </script
+</body>
+
+</html>

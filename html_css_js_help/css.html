@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda CSS Elinv</title>
+
+    <link rel="icon" sizes="96x96" href="./favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./jquery-latest.min.js"></script>
+    <script src="./run_prettify.js?autoload=true&skin=sons-of-obsidian" defer="defer"></script>
+</head>
+
+<body>
+    <h1>CSS soporte rápido.</h1>
+    <h3 class="text-primary">Buscador de Texto en CSS</h3>
+    <hr style="border-top:1px dotted #ccc;" />
+    <div>
+        Buscar » <input name="buscador" id="buscador" type="text" />
+    </div>
+
+    <ul id="lista">
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>Media type que me funciona!</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+    /* tablet y telefono horizontal */
+    @media screen and (max-width: 950px) {
+    h1 {
+            font-size: 4em;
+        }
+    }
+        
+    /* Responsive teléfono vertical */
+    @media screen and (max-width: 600px) {
+    h1 {
+            font-size: 3em;
+        }
+    }
+            </pre>
+            </p>
+        </li>
+
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>Linea separadora gradient</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+    .hrF {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, 
+        rgb(21, 0, 255), rgb(236, 17, 17), rgb(21, 
+        0, 255));
+    }
+            </pre>
+            </p>
+        </li>
+        
+        <li class="dNone">
+            <input type="checkbox" checked>
+            <h2>Imagen de fondo</h2>
+            <p>
+            <pre class="prettyprint bordeRedondeado">
+
+.fondoIMG{
+    background-image: url('./fondos/Elinv.ojos.png');
+    background-size: 40em;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-shadow: 3px 5px 2px #474747;
+    height: 15em;
+    padding-top: 3em;
+    line-height: 3em;
+}
+
+            </pre>
+            </p>
+        </li>
+
+    </ul>
+    
+    <script type='text/javascript'>
+
+        $.expr[':'].icontains = function (obj, index, meta, stack) {
+            return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
+        };
+
+        $(document).ready(function () {
+
+            $('#buscador').keyup(function () {
+                // ocultamos todos los elementos li
+                var listItems = $("#lista li");
+                listItems.each(function(idx, li) {
+                    $('#lista li').addClass('dNone'); 
+                });
+
+                // mostramos solo donde haya resultado
+                buscar = $(this).val();
+                $('#lista li').removeClass('resaltar');
+                if (jQuery.trim(buscar) != '') {
+                    $("#lista li:icontains('" + buscar + "')").addClass('resaltar').removeClass('dNone');
+                }
+                // si al retroceder se borro todo, se muestra todo.
+                if (buscar === ''){
+                    var listItems = $("#lista li");
+                    listItems.each(function(idx, li) {
+                    $('#lista li').removeClass('dNone'); 
+                });
+                }
+            });
+
+                            // ocultamos todos los elementos li
+                            var listItems = $("#lista li");
+                listItems.each(function(idx, li) {
+                    $('#lista li').addClass('dNone'); 
+                });
+
+        });  
+    </script
+</body>
+
+</html>

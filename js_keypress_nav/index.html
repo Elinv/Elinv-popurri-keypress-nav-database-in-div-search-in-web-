@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elinv => Control por teclado => ArrowUp => ArrowDown en "divs" e "inputs".</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            width: 100%;
+        }
+
+        .keyNavCls {
+            border: 1px solid #1C6EA4;
+            padding: 3px;
+            margin: 2px;
+        }
+
+        .keyNavCls:hover {
+            border: 1.5px solid #0026ff;
+        }
+
+        .keyNavCls:focus {
+            border: 3.5px solid #008cff;
+        }
+
+        :focus {
+            outline: 4px dashed rgb(0, 51, 255);
+        }
+
+        .borde {
+            border: 2px solid #1C6EA4;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+            float: none;
+            text-align: center;
+            align-content: center;
+        }
+
+        .form {
+            width: 100%;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 
+        El tag <br> lo utilizó como elemento 
+        de principio y fin de la navegación
+        sea en los inputs o en los divs, 
+        aunque se podría utilizar cualquier otro tag,  
+        resultando indistinto.
+    -->
+
+    <br>
+    <div class="borde">
+
+        Listado de "inputs" <br>
+
+        [style="display: block"] <br>
+        en los "inputs" es necesario para la navegación por teclas. <br>
+        <br>
+        Si no se usa, <br>
+        genera una excepción y por efecto del while <br>
+        se cuelga la página. <br>
+
+        Lo mismo aplica a los "divs" o a cualquier "tag" donde se emplee este clase.
+    </div>
+    <br>
+    <p class="borde">
+        <br>
+        <input id="Text1" type="text" value="Input type text => Elinv 1" style="display: inline-block" />
+        <input id="Text2" type="text" value="Input type text => Elinv 2" style="display: inline-block" />
+        <input id="Text3" type="text" value="Input type text => Elinv 3" style="display: inline-block" />
+        <br><br>
+    </p>
+    <br>
+    <hr>
+    <br>
+    <p class="borde">
+        <br>
+        <b><u>Listado uno en divs</u></b> <br> <br>
+        Si hace doble click en cualquier div  <br>
+        el mismo desaparecerá. <br>
+        Comprobará que la navegación sigue funcional.
+        <br>
+        <br>
+    <div class="keyNavCls" tabindex="0" style="display: block">Div => Elinv 1</div>
+    <div class="keyNavCls" tabindex="2" style="display: block">Div => Elinv 2</div>
+    <div class="keyNavCls" tabindex="3" style="display: block">Div => Elinv 3</div>
+
+    <div class="keyNavCls" tabindex="4" style="display: block">Div => Elinv 4</div>
+    <div class="keyNavCls" tabindex="5" style="display: block">Div => Elinv 5</div>
+    <div class="keyNavCls" tabindex="6" style="display: block">Div => Elinv 6</div>
+    <hr>
+    </p>
+    <br>
+    <p class="borde">
+        <br>
+        <b><u>Listado dos en divs</u></b> <br> <br>
+        Si hace doble click en cualquier div  <br>
+        el mismo desaparecerá. <br>
+        Comprobará que la navegación sigue funcional.
+        <br><br>
+    <div class="keyNavCls" tabindex="6" style="display: block">Div => Elinv 11</div>
+    <div class="keyNavCls" tabindex="7" style="display: block">Div => Elinv 21</div>
+    <div class="keyNavCls" tabindex="8" style="display: block">Div => Elinv 31</div>
+    <div class="keyNavCls" tabindex="9" style="display: block">Div => Elinv 41</div>
+    <div class="keyNavCls" tabindex="10" style="display: block">Div => Elinv 51</div>
+    </p>
+
+
+
+    <script type="text/javascript">
+
+        // Clase para el control de navegación de tags por el teclado de la compu
+        class keyNavElinv {
+            constructor(tag) {
+                this.tag = tag;
+            }
+
+            ocultar() {
+                document.activeElement.style.display = 'none';
+            }
+
+            tab(e) {
+
+                if (e.key == "ArrowUp") {
+
+                    let nodePost = document.activeElement.previousSibling.previousSibling.nodeName;
+
+                    if (nodePost === 'DIV' || nodePost === 'INPUT') {
+                        let anterior = document.activeElement.previousSibling;
+                        let anterior1;
+
+                        let finCiclos = true;
+
+                        while (finCiclos) {
+
+                            try {
+
+                                if (anterior.previousSibling.style.display === 'inline-block') {
+                                    anterior.previousSibling.focus();
+                                    finCiclos = false;
+                                    break;
+                                }
+
+                                if (anterior.previousSibling.style.display === 'block') {
+                                    anterior.previousSibling.focus();
+                                    finCiclos = false;
+                                    break;
+                                }
+
+                                if (anterior.previousSibling.style.display === 'none') {
+                                    anterior1 = anterior.previousSibling;
+                                    anterior1.previousSibling.previousSibling.focus();
+                                    anterior = anterior1.previousSibling;
+                                }
+
+                            } catch (error) {
+                                finCiclos = false;
+                                break;
+                            }
+                        }
+                    }
+
+                }
+
+                if (e.key == "ArrowDown") {
+
+                    let nodePost = document.activeElement.nextSibling.nextSibling.nodeName;
+
+                    if (nodePost === 'DIV' || nodePost === 'INPUT') {
+
+                        let posterior = document.activeElement.nextSibling;
+                        let posterior1;
+
+                        let finCiclos = true;
+
+                        while (finCiclos) {
+                            try {
+
+                                if (posterior.nextSibling.style.display === 'inline-block') {
+                                    posterior.nextSibling.focus();
+                                    finCiclos = false;
+                                    break;
+                                }
+
+                                if (posterior.nextSibling.style.display === 'block') {
+                                    posterior.nextSibling.focus();
+                                    finCiclos = false;
+                                    break;
+                                }
+
+                                if (posterior.nextSibling.style.display === 'none') {
+                                    posterior1 = posterior.nextSibling;
+                                    posterior1.nextSibling.nextSibling.focus();
+                                    posterior = posterior1.nextSibling;
+                                }
+                            } catch (error) {
+                                finCiclos = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            init() {
+                //asignamos eventos del teclado a cada div
+                let divs = document.getElementsByTagName(this.tag);
+                let cDiv = divs.length;
+                for (let x = 0; x < cDiv; x++) {
+                    divs[x].onkeyup = this.tab;
+                    divs[x].ondblclick = this.ocultar;
+                }
+            }
+        }
+
+        // Forma de utilización.
+        let keyNavDiv = new keyNavElinv('div');
+        keyNavDiv.init();
+
+        let keyNavInput = new keyNavElinv('input');
+        keyNavInput.init();
+
+    </script>
+</body>
+
+</html>
