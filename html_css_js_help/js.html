@@ -50,7 +50,7 @@
 
         <li class="dNone">
             <input type="checkbox" checked>
-            <h2>cargar e inserntar html async</h2>
+            <h2>cargar e insertar html async</h2>
             <p>
             <pre class="prettyprint bordeRedondeado">
                 
@@ -75,38 +75,8 @@
 
     </ul>
 
-    <script type='text/javascript'>
-
-        $.expr[':'].icontains = function (obj, index, meta, stack) {
-            return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
-        };
-
-        $(document).ready(function () {
-
-            $('#buscador').keyup(function () {
-                // ocultamos todos los elementos li
-                var listItems = $("#lista li");
-                listItems.each(function (idx, li) {
-                    $('#lista li').addClass('dNone');
-                });
-
-                // mostramos solo donde haya resultado
-                buscar = $(this).val();
-                $('#lista li').removeClass('resaltar');
-                if (jQuery.trim(buscar) != '') {
-                    $("#lista li:icontains('" + buscar + "')").addClass('resaltar').removeClass('dNone');
-                }
-                // si al retroceder se borro todo, se muestra todo.
-                if (buscar === '') {
-                    var listItems = $("#lista li");
-                    listItems.each(function (idx, li) {
-                        $('#lista li').removeClass('dNone');
-                    });
-                }
-            });
-
-        });  
-    </script
+    <script src="./activos/script.js"></script>
+    
 </body>
 
 </html>
