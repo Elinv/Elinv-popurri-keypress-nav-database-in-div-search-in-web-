@@ -1,4 +1,5 @@
-## Editar HTML en simultáneo en PC y MOVIL.
+## POPURRI de código JS, con una misma aplicación
+## versión JQUERY, JS PURO y JS CLASS.
 ## 🧐 Elinv <a name = "Elinv"></a>
 ----------------------------------------
 <p align="center">
