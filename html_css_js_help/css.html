@@ -1,25 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayuda CSS Elinv</title>
 
-    <link rel="icon" sizes="96x96" href="./favicon.ico">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./jquery-latest.min.js"></script>
-    <script src="./run_prettify.js?autoload=true&skin=sons-of-obsidian" defer="defer"></script>
+    <link rel="icon" sizes="96x96" href="./activos/favicon.ico">
+    <link rel="stylesheet" href="./activos/style.css">
+    <script src="./activos/run_prettify.js?autoload=true&skin=sons-of-obsidian" defer="defer"></script>
+
 </head>
 
 <body>
     <h1>CSS soporte rápido.</h1>
-    <h3 class="text-primary">Buscador de Texto en CSS</h3>
+    <h3 class="text-primary">Buscador de código en CSS</h3>
     <hr style="border-top:1px dotted #ccc;" />
     <div>
-        Buscar » <input name="buscador" id="buscador" type="text" />
+        Buscar » <input name="buscador" id="buscador" type="text" 
+                    placeholder="Ingrese texto a buscar" 
+                    title="Doble click limpia esta casilla.
+Estando vacia, presiona retroceso 
+muestra todos los registros."
+                    class="css-input" /> <br>
+        Hallados » <input name="labHhallados" id="labHhallados" type="text" 
+                    title="Resultados de su busqueda" readOnly 
+                    class="css-input" />
     </div>
+    <hr>
 
     <ul id="lista">
         <li class="dNone">
@@ -83,7 +93,19 @@
 
     </ul>
     
-<script src="./activos/script.js"></script>
+    <!-- Método 1 del sistema mediante la clase javascript -->
+    <script src="./activos/script_JS_CLASS.js"></script>
+    <script>
+        let jsBase = new ulLiSearch('buscador');
+        jsBase.init('lista', 'labHhallados', jsBase);
+    </script>
+    
+    <!-- Método 2 del sistema mediante JQUERY -->
+    <!-- <script src="./activos/jquery-latest.min.js"></script>
+    <script src="./activos/script_JQUERY.js"></script> -->
+
+    <!-- Método 3 del sistema mediante puro javascript -->
+    <!-- <script src="./activos/script_JS_puro.js"></script> -->
 
 </body>
 
