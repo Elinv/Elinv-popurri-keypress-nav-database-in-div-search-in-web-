@@ -8,7 +8,7 @@
     <title>Ayuda Javascript Elinv</title>
 
     <link rel="icon" sizes="96x96" href="./activos/favicon.ico">
-    <link rel="stylesheet" href="./activos/style.css">
+    <link rel="stylesheet" href="./activos/style.css?v=1">
     <script src="./activos/run_prettify.js?autoload=true&skin=sons-of-obsidian" defer="defer"></script>
 </head>
 
@@ -31,155 +31,12 @@ muestra todos los registros."
                     class="css-input" />
     </div>
     <hr>
+   
+    <ul id="lista"></ul>
+
+    <!-- Cargamos la base de datos -->
+    <script src="./activos/JS_Base.js"></script>
     
-
-    <ul id="lista">
-
-        <li>
-            <input type="checkbox" checked>
-            <h2>"class": sintaxis básica</h2>
-            <p>
-            <pre class="prettyprint bordeRedondeado">
-
-    class User {                 
-        constructor(name) {
-            this.name = name; 
-        }                 
-        
-        sayHi() { 
-            alert(this.name); 
-        }                 
-    }       
-                
-    // Uso: 
-    let user = new User("Juan"); 
-    user.sayHi(); 
-
-            </pre>
-            </p>
-        </li>
-
-        <li>
-            <input type="checkbox" checked>
-            <h2>cargar e insertar html async</h2>
-            <p>
-            <pre class="prettyprint bordeRedondeado">                
-    // forma de utilización
-    // ?v=6 permite actualizar y evitar 
-    // el cache del navegador
-    // el número final debe cambiar cada vez.
-
-    getText("deDios.html?v=6", "Mistica");
-    getText("visitas.html?v=6", "visitasSection");
-    
-    // Función para leer un archivo externo
-    async function getText(file, id) {
-        let myObject = await fetch(file);
-        let myText = await myObject.text();
-        document.getElementById(id).innerHTML = myText;
-    }
-            </pre>
-            </p>
-        </li>
-
-        <li>
-            <input type="checkbox" checked>
-            <h2>Color aleatorio función</h2>
-            <p>
-            <pre class="prettyprint bordeRedondeado">
-    function getRandomColor() {
-        const availableCharacters = '0123456789ABCDEF';
-        const availableCharacterLength = availableCharacters.length;
-
-        let color = '#';
-
-        for (let i = 0; i &lt; 6; i++) {
-            color += availableCharacters[Math.floor(Math.random() * availableCharacterLength)];
-        }
-    }
-            </pre>
-            </p>
-        </li>
-
-        <li>
-            <input type="checkbox" checked>
-            <h2>Color aleatorio 4 formas</h2>
-            <p>
-            <pre class="prettyprint bordeRedondeado">
-    //1.
-    var color = '#'+Math.floor(Math.random()*256).toString(10);
-    //2.
-    var color = '#'+Math.floor(Math.random()*0xffffff).toString(16);
-    //3.
-    function rgb(){// rgb color random
-        var r = Math.floor(Math.random()*256);
-        var g = Math.floor(Math.random()*256);
-        var b = Math.floor(Math.random()*256);
-        var rgb = 'rgb('+r+','+g+','+b+')';
-        return rgb;
-    }
-    //4.
-    function color16(){// hexadecimal color random
-        var r = Math.floor(Math.random()*256);
-        var g = Math.floor(Math.random()*256);
-        var b = Math.floor(Math.random()*256);
-        var color = '#'+r.toString(16)+g.toString(16)+b.toString(16);
-        return color;
-    }
-            </pre>
-            </p>
-        </li>
-
-        <li>
-            <input type="checkbox" checked>
-            <h2>Deshabilitar boton</h2>
-            <p>
-            <pre class="prettyprint bordeRedondeado">
-    let button = document.getElementById("btn");
-    button.setAttribute("disabled","true");
-    button.style.pointerEvents = "none";
-    button.style.opacity = 0.5;
-
-    //Disabling a html button
-    document.getElementById("Button").disabled = true;
-
-    //Enabling a html button
-    document.getElementById("Button").disabled = false;
-            </pre>
-            </p>
-        </li>
-
-        <li>
-            <input type="checkbox" checked>
-            <h2>Deshabilitar boton por un tiempo</h2>
-            <p>
-            <pre class="prettyprint bordeRedondeado">
-    const btn = document.getElementById("myBtn")
-    function myFunction() {
-        btn.disabled = true;
-        setTimeout(()=>{
-            btn.disabled = false;
-            console.log('Button Activated')}, 5000)
-        }
-    }
-            </pre>
-            </p>
-        </li>
-
-        <li>
-        <input type="checkbox" checked>
-        <h2>Radio boton get value</h2>
-        <p>
-        <pre class="prettyprint bordeRedondeado">
-    if (document.getElementById('r1').checked) {
-        rate_value = document.getElementById('r1').value;
-    }
-        </pre>
-        </p>
-        </li>
-
-    </ul>
-
     <!-- Método 1 del sistema mediante la clase javascript -->
     <script src="./activos/script_JS_CLASS.js"></script>
     <script>
@@ -193,7 +50,7 @@ muestra todos los registros."
 
     <!-- Método 3 del sistema mediante puro javascript -->
     <!-- <script src="./activos/script_JS_puro.js"></script> -->
-    
+
 </body>
 
 </html>
